@@ -3,7 +3,7 @@ import { Grid, Header, Icon, Segment, Table } from 'semantic-ui-react';
 import { editContact, deleteContact, useFetch } from '../auth/firebase';
 
 
-const Contact = (handleEdit) => {
+const Contact = ({ handleEdit }) => {
     const { contactList, setContactList } = useFetch()
     // console.log(contactList)
 
@@ -34,9 +34,11 @@ const Contact = (handleEdit) => {
                                     <Table.Cell>{contact.phone}</Table.Cell>
                                     <Table.Cell>{contact.gender}</Table.Cell>
                                     <Table.Cell><Icon className="ui red" link name='close' onClick={() => deleteContact(contact.id)} /></Table.Cell>
-                                    <Table.Cell><Icon className="ui green" link name='edit' onClick={() => handleEdit(contact.id)} /></Table.Cell>
+                                    <Table.Cell><Icon className="ui green" link name='edit' onClick={() => handleEdit(contact)} /></Table.Cell>
                                 </Table.Row>
                             )
+
+
                         }
                     </Table.Body>
                 </Table>

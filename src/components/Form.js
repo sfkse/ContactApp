@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { Grid, Segment, Form, Input, Button, Dropdown } from 'semantic-ui-react';
 
 
-const FormComponent = ({ info, setInfo, handleSubmit }) => {
+const FormComponent = ({ info, setInfo, handleSubmit, changeButton }) => {
     const ref = useRef()
     const gender = [
         {
@@ -64,7 +64,9 @@ const FormComponent = ({ info, setInfo, handleSubmit }) => {
                             onChange={handleOptionChange}
                         />
                     </Form.Field>
-                    <Button primary fluid >Add</Button>
+                    <Button primary fluid >
+                        {changeButton ? 'Update' : 'Add'}
+                    </Button>
                 </Form>
             </Segment>
         </Grid.Column>

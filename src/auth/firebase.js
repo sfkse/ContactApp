@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set, push, onValue, remove } from "firebase/database";
+import { getDatabase, ref, set, push, onValue, remove, update } from "firebase/database";
 
-
-const firebaseConfig = initializeApp({
+//Change these credentials with yours
+initializeApp({
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
     databaseURL: process.env.REACT_APP_DATABASE_URL,
@@ -48,15 +48,12 @@ export const useFetch = () => {
     return { contactList }
 }
 
-export const editContact = (id, name, phone) => {
+export const editContact = (id, name, phone, gender) => {
     const db = getDatabase();
-    const contactRef = ref(db, 'contact' + id);
-    onValue(contactRef, (snapshot) => {
-        const data = snapshot.val();
-        data.update({
-            name: name,
-            phone: phone
-        })
+    update(ref(db, 'contact/' + id), {
+        name: name,
+        phone: phone,
+        gender: gender
     })
 }
 export const deleteContact = (id) => {
