@@ -1,9 +1,13 @@
 import { useEffect } from 'react';
 import { Grid, Header, Icon, Segment, Table } from 'semantic-ui-react';
-import { useFetch } from '../auth/firebase';
-const Contact = () => {
+import { editContact, deleteContact, useFetch } from '../auth/firebase';
+
+
+const Contact = (handleEdit) => {
     const { contactList, setContactList } = useFetch()
-    console.log(contactList)
+    // console.log(contactList)
+
+
     return (
 
         <Grid.Column width={6}>
@@ -24,13 +28,13 @@ const Contact = () => {
 
                     <Table.Body>
                         {
-                            contactList.map(contact =>
-                                <Table.Row>
-                                    <Table.Cell>John Lilki</Table.Cell>
-                                    <Table.Cell>9625415599</Table.Cell>
-                                    <Table.Cell>MALE</Table.Cell>
-                                    <Table.Cell><Icon className="ui red" link name='close' /></Table.Cell>
-                                    <Table.Cell><Icon className="ui green" link name='edit' /></Table.Cell>
+                            contactList?.map(contact =>
+                                <Table.Row key={contact.id} >
+                                    <Table.Cell>{contact.name}</Table.Cell>
+                                    <Table.Cell>{contact.phone}</Table.Cell>
+                                    <Table.Cell>{contact.gender}</Table.Cell>
+                                    <Table.Cell><Icon className="ui red" link name='close' onClick={() => deleteContact(contact.id)} /></Table.Cell>
+                                    <Table.Cell><Icon className="ui green" link name='edit' onClick={() => handleEdit(contact.id)} /></Table.Cell>
                                 </Table.Row>
                             )
                         }

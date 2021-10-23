@@ -5,7 +5,7 @@ import { useState } from "react";
 import { addContact } from './auth/firebase';
 
 function App() {
-  const initialValues = { name: '', phone: '', gender: '' }
+  const initialValues = { name: '', phone: '', gender: 'Other' }
   const [info, setInfo] = useState(initialValues);
 
   const handleSubmit = () => {
@@ -13,11 +13,18 @@ function App() {
     const { name, phone, gender } = info
     addContact(name, phone, gender)
     setInfo(initialValues)
-
   }
+
+
+
   return (
     <Grid centered style={{ marginTop: "20vh" }}>
-      <Form info={info} setInfo={setInfo} handleSubmit={handleSubmit} />
+      <Form
+        info={info}
+        setInfo={setInfo}
+        handleSubmit={handleSubmit}
+
+      />
       <Contact />
     </Grid>
   );
