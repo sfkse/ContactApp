@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
 import { Grid, Header, Icon, Segment, Table } from 'semantic-ui-react';
-import { editContact, deleteContact, useFetch } from '../auth/firebase';
+import { deleteContact, useFetch } from '../auth/firebase';
 
 
 const Contact = ({ handleEdit }) => {
-    const { contactList, setContactList } = useFetch()
+    const { contactList } = useFetch()
     // console.log(contactList)
 
 
